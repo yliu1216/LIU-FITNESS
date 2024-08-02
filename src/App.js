@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import Home from './pages/Home.jsx';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './Components/Layout.jsx';
+import { ExerciseContext } from './Components/ExerciseContext.jsx';
+import {AboutUs} from './Components/Company.jsx';
+import ExerciseDetail from './pages/ExerciseDetail.jsx';
+import { ExerciseProvider } from './Components/ExerciseContext.jsx';
+import Login from './Components/Login';
+import Register from './Components/Register.jsx';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <ExerciseProvider> 
+        <Routes>
+          <Route path='/' element={<Layout/>}>
+            <Route index element={<Home/>}/>
+            <Route path="/exercise/:id" element={<ExerciseDetail/>}/>
+            <Route path="/company" element={<AboutUs/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/register" element={<Register/>}/>
+            </Route>
+        </Routes>
+      </ExerciseProvider> 
   );
 }
 
